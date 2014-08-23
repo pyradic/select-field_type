@@ -1,4 +1,4 @@
-<?php namespace Addon\FieldType\Select;
+<?php namespace Streams\Addon\FieldType\Select;
 
 use Streams\Core\Addon\FieldTypeAbstract;
 
