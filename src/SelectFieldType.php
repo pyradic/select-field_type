@@ -12,13 +12,6 @@ class SelectFieldType extends FieldTypeAbstract
     public $columnType = 'string';
 
     /**
-     * Field type version
-     *
-     * @var string
-     */
-    public $version = '1.1.0';
-
-    /**
      * Available field type settings.
      *
      * @var array
@@ -29,71 +22,17 @@ class SelectFieldType extends FieldTypeAbstract
     );
 
     /**
-     * Field type author information.
-     *
-     * @var array
-     */
-    public $author = array(
-        'name' => 'AI Web Systems, Inc.',
-        'url'  => 'http://aiwebsystems.com/',
-    );
-
-    /**
      * Return the input used for forms.
      *
      * @return mixed
      */
-    public function formInput()
+    public function input()
     {
-        if ($options = $this->getOptions() and !$this->field->is_required) {
-            $options = array(null => $this->getPlaceholder()) + $options;
-        }
-
         return \Form::select(
-            $this->formSlug,
-            $options,
-            $this->value
+            $this->inputName(),
+            $this->options(),
+            $this->value()
         );
-    }
-
-    /**
-     * Return the string output value.
-     *
-     * @return null
-     */
-    public function stringOutput()
-    {
-        return $this->getOption($this->value);
-    }
-
-    /**
-     * Return the plugin output value.
-     *
-     * @return null
-     */
-    public function pluginOutput()
-    {
-        if ($this->value) {
-            return array(
-                'value' => $this->getOption($this->value),
-                'key'   => $this->value,
-            );
-        }
-
-        return null;
-    }
-
-    /**
-     * Get the option value from it's value.
-     *
-     * @param null $value
-     * @return null
-     */
-    public function getOption($value)
-    {
-        $options = $this->getOptions();
-
-        return isset($options[$value]) ? $options[$value] : null;
     }
 
     /**
@@ -101,7 +40,7 @@ class SelectFieldType extends FieldTypeAbstract
      *
      * @return array
      */
-    public function getOptions()
+    protected function options()
     {
         // @todo - Return options as associative array here. Don't forget support for optgroups.
     }
