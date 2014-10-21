@@ -1,4 +1,4 @@
-<?php namespace Streams\Addon\FieldType\Select;
+<?php namespace Anomaly\Streams\FieldType\Select;
 
 use Streams\Core\Addon\FieldTypeAbstract;
 
