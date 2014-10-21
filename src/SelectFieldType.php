@@ -4,6 +4,8 @@ use Anomaly\Streams\Platform\Addon\FieldType\FieldTypeAddon;
 
 class SelectFieldType extends FieldTypeAddon
 {
+    protected $slug = 'select';
+
     /**
      * The database column type this field type uses.
      *
@@ -31,7 +33,7 @@ class SelectFieldType extends FieldTypeAddon
         return \Form::select(
             $this->inputName(),
             $this->options(),
-            $this->value()
+            $this->value
         );
     }
 
