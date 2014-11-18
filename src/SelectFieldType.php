@@ -14,54 +14,51 @@ class SelectFieldType extends FieldType
 {
 
     /**
-     * Return the input HTML.
+     * The input class.
      *
-     * @return mixed
+     * @var null
      */
-    public function input()
+    protected $class = null;
+
+    /**
+     * The input view.
+     *
+     * @var string
+     */
+    protected $inputView = 'field_type.select::input';
+
+    /**
+     * Get the view data for the input view.
+     *
+     * @return array
+     */
+    public function getInputData()
     {
-        return app('form')->select($this->getFieldName(), $this->getOptions(), $this->getValue());
+        $data = parent::getInputData();
+
+        $data['options'] = $this->getOptions();
+
+        return $data;
     }
 
     /**
-     * Get the selectable options.
+     * Return options available.
      *
      * @return array
      */
     public function getOptions()
     {
-        $options = $this->getConfig('options', [null => 'misc.empty']);
+        $options = $this->getConfig('options', []);
 
-        return $this->translate($options);
-    }
+        foreach ($options as $value => &$title) {
 
-    protected function translate($options)
-    {
-        $translated = [];
-
-        foreach ($options as $key => $option) {
-
-            $translated[trans($key)] = $this->translateOption($option);
+            $options[$value] = [
+                'value'    => $value,
+                'title'    => trans($title),
+                'selected' => ($value == $this->getValue()),
+            ];
         }
 
-        return $translated;
-    }
-
-    protected function translateOption($option)
-    {
-        if (is_string($option)) {
-
-            $option = trans($option);
-        }
-
-        if (is_array($option)) {
-
-            foreach ($option as &$value) {
-
-                $value = trans($value);
-            }
-        }
-
-        return $option;
+        return $options;
     }
 }
