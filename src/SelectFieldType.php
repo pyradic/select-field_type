@@ -20,11 +20,7 @@ class SelectFieldType extends FieldType
      */
     public function input()
     {
-        $options = [
-            'class' => 'form-control',
-        ];
-
-        return app('form')->select($this->getFieldName(), $this->getOptions(), $this->getValue(), $options);
+        return app('form')->select($this->getFieldName(), $this->getOptions(), $this->getValue());
     }
 
     /**
@@ -34,6 +30,38 @@ class SelectFieldType extends FieldType
      */
     public function getOptions()
     {
-        return ['foo' => 'Foo', 'bar' => 'Bar'];
+        $options = $this->getConfig('options', [null => 'misc.empty']);
+
+        return $this->translate($options);
+    }
+
+    protected function translate($options)
+    {
+        $translated = [];
+
+        foreach ($options as $key => $option) {
+
+            $translated[trans($key)] = $this->translateOption($option);
+        }
+
+        return $translated;
+    }
+
+    protected function translateOption($option)
+    {
+        if (is_string($option)) {
+
+            $option = trans($option);
+        }
+
+        if (is_array($option)) {
+
+            foreach ($option as &$value) {
+
+                $value = trans($value);
+            }
+        }
+
+        return $option;
     }
 }
