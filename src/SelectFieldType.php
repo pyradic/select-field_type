@@ -48,7 +48,7 @@ class SelectFieldType extends FieldType
      */
     public function getOptions()
     {
-        $options = evaluate($this->getConfig('options', []));
+        $options = evaluate($this->pullConfig('options', []));
 
         foreach ($options as $value => &$title) {
 
