@@ -48,7 +48,11 @@ class SelectFieldType extends FieldType
      */
     public function getOptions()
     {
-        $options = evaluate($this->pullConfig('options', []));
+        $options = $this->pullConfig('options', []);
+
+        if ($options instanceof \Closure) {
+            $options = app()->call($options);
+        }
 
         foreach ($options as $value => &$title) {
 
