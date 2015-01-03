@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\FieldType\Select;
+<?php namespace Anomaly\SelectFieldType;
 
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
 
