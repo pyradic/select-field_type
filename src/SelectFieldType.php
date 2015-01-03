@@ -25,7 +25,7 @@ class SelectFieldType extends FieldType
      *
      * @var string
      */
-    protected $inputView = 'field_type.select::input';
+    protected $inputView = 'anomaly.field_type.select::input';
 
     /**
      * Get the view data for the input view.
