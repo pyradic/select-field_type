@@ -1,5 +1,5 @@
 {
-    "name": "anomaly/select-field-type",
+    "name": "anomaly/select-field_type",
     "type": "streams-addon",
     "description": "Select field type.",
     "authors": [
