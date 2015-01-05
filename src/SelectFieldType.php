@@ -27,7 +27,7 @@ class SelectFieldType extends FieldType
      */
     public function getOptions()
     {
-        $options = array_get('options', []);
+        $options = array_get($this->config, 'options', []);
 
         if ($options instanceof \Closure) {
             $options = app()->call($options);
