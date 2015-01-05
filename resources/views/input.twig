@@ -1,6 +1,6 @@
-<select name="{{ name }}" class="{{ class }} form-control select2" data-placeholder="{{ placeholder }}">
+<select name="{{ field_type.getFieldName() }}" class="form-control select2" data-placeholder="{{ field_type.placeholder }}">
 
-    {% for option in options %}
+    {% for option in field_type.options %}
 
         <option value="{{ option.value }}" {{ option.selected ? 'selected' }}>{{ option.title }}</option>
 

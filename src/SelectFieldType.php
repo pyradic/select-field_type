@@ -14,32 +14,11 @@ class SelectFieldType extends FieldType
 {
 
     /**
-     * The input class.
-     *
-     * @var null
-     */
-    protected $class = null;
-
-    /**
      * The input view.
      *
      * @var string
      */
     protected $inputView = 'anomaly.field_type.select::input';
-
-    /**
-     * Get the view data for the input view.
-     *
-     * @return array
-     */
-    public function getInputData()
-    {
-        $data = parent::getInputData();
-
-        $data['options'] = $this->getOptions();
-
-        return $data;
-    }
 
     /**
      * Return options available.
@@ -48,7 +27,7 @@ class SelectFieldType extends FieldType
      */
     public function getOptions()
     {
-        $options = $this->pullConfig('options', []);
+        $options = array_get('options', []);
 
         if ($options instanceof \Closure) {
             $options = app()->call($options);
