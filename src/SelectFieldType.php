@@ -21,7 +21,7 @@ class SelectFieldType extends FieldType
     protected $inputView = 'anomaly.field_type.select::input';
 
     /**
-     * Return options available.
+     * Get the options.
      *
      * @return array
      */
@@ -29,17 +29,8 @@ class SelectFieldType extends FieldType
     {
         $options = array_get($this->config, 'options', []);
 
-        if ($options instanceof \Closure) {
-            $options = app()->call($options);
-        }
-
-        foreach ($options as $value => &$title) {
-
-            $options[$value] = [
-                'value'    => $value,
-                'title'    => trans($title),
-                'selected' => ($value == $this->getValue()),
-            ];
+        if ($this->placeholder) {
+            $options = [null => 'TEST'] + $this->placeholder;
         }
 
         return $options;
