@@ -29,10 +29,6 @@ class SelectFieldType extends FieldType
     {
         $options = array_get($this->config, 'options', []);
 
-        if ($this->placeholder) {
-            $options = [null => 'TEST'] + $this->placeholder;
-        }
-
         return $options;
     }
 }
