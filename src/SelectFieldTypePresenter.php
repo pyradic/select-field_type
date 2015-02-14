@@ -15,6 +15,7 @@ class SelectFieldTypePresenter extends FieldTypePresenter
 
     /**
      * The decorated object.
+     * This is for IDE support.
      *
      * @var SelectFieldType
      */
@@ -33,6 +34,6 @@ class SelectFieldTypePresenter extends FieldTypePresenter
             return null;
         }
 
-        return array_get($options, $this->object->getValue());
+        return trans(array_get($options, $this->object->getValue()));
     }
 }

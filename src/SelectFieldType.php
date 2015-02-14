@@ -8,7 +8,7 @@ use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\Streams\Addon\FieldType\Select
+ * @package       Anomaly\SelectFieldType
  */
 class SelectFieldType extends FieldType
 {
@@ -21,7 +21,7 @@ class SelectFieldType extends FieldType
     protected $inputView = 'anomaly.field_type.select::input';
 
     /**
-     * Get the options.
+     * Get the dropdown options.
      *
      * @return array
      */
