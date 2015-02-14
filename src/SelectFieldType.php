@@ -27,8 +27,6 @@ class SelectFieldType extends FieldType
      */
     public function getOptions()
     {
-        $options = array_get($this->config, 'options', []);
-
-        return $options;
+        return array_get($this->config, 'options', []);
     }
 }
