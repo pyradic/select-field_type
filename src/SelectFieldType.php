@@ -21,12 +21,19 @@ class SelectFieldType extends FieldType
     protected $inputView = 'anomaly.field_type.select::input';
 
     /**
+     * The default options handler.
+     *
+     * @var string
+     */
+    protected $options = 'Anomaly\SelectFieldType\SelectFieldTypeOptions@handle';
+
+    /**
      * Get the dropdown options.
      *
      * @return array
      */
     public function getOptions()
     {
-        return array_get($this->config, 'options', []);
+        return app()->call(array_get($this->config, 'handler', $this->options));
     }
 }
