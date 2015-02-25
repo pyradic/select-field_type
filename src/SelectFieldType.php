@@ -34,6 +34,6 @@ class SelectFieldType extends FieldType
      */
     public function getOptions()
     {
-        return app()->call(array_get($this->config, 'handler', $this->options));
+        return app()->call(array_get($this->config, 'handler', $this->options), ['fieldType' => $this]);
     }
 }
