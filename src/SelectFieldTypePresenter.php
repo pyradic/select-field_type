@@ -22,6 +22,16 @@ class SelectFieldTypePresenter extends FieldTypePresenter
     protected $object;
 
     /**
+     * Return the key value.
+     *
+     * @return string|null
+     */
+    public function key()
+    {
+        return $this->object->getValue();
+    }
+
+    /**
      * Return the value from the key value.
      *
      * @return string|null
