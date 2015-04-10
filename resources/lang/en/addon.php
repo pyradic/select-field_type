@@ -2,5 +2,5 @@
 
 return [
     'name'        => 'Select',
-    'description' => 'A select dropdown field type.',
+    'description' => 'A select dropdown field type.'
 ];
