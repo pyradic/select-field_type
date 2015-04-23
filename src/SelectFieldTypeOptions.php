@@ -19,9 +19,6 @@ class SelectFieldTypeOptions
      */
     public function handle(SelectFieldType $fieldType)
     {
-        return array_merge(
-            [null => trans($fieldType->getPlaceholder())],
-            array_get($fieldType->getConfig(), 'options', [])
-        );
+        return [null => trans($fieldType->getPlaceholder())] + array_get($fieldType->getConfig(), 'options', []);
     }
 }
