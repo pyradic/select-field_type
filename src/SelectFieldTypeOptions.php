@@ -1,5 +1,8 @@
 <?php namespace Anomaly\SelectFieldType;
 
+use Anomaly\SelectFieldType\Command\ParseOptions;
+use Illuminate\Foundation\Bus\DispatchesCommands;
+
 /**
  * Class SelectFieldTypeOptions
  *
@@ -11,6 +14,8 @@
 class SelectFieldTypeOptions
 {
 
+    use DispatchesCommands;
+
     /**
      * Handle the select options.
      *
@@ -19,6 +24,12 @@ class SelectFieldTypeOptions
      */
     public function handle(SelectFieldType $fieldType)
     {
-        return [null => trans($fieldType->getPlaceholder())] + array_get($fieldType->getConfig(), 'options', []);
+        $options = array_get($fieldType->getConfig(), 'options', []);
+
+        if (is_string($options)) {
+            $options = $this->dispatch(new ParseOptions($options));
+        }
+
+        return $options;
     }
 }
