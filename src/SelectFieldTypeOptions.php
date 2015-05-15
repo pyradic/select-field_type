@@ -30,6 +30,6 @@ class SelectFieldTypeOptions
             $options = $this->dispatch(new ParseOptions($options));
         }
 
-        return $options;
+        return [null => $fieldType->getPlaceholder()] + $options;
     }
 }
