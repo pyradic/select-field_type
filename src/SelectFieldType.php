@@ -36,14 +36,4 @@ class SelectFieldType extends FieldType
     {
         return app()->call(array_get($this->config, 'handler', $this->options), ['fieldType' => $this]);
     }
-
-    /**
-     * Get the placeholder.
-     *
-     * @return null|string
-     */
-    public function getPlaceholder()
-    {
-        return $this->placeholder ?: 'anomaly.field_type.select::input.placeholder';
-    }
 }
