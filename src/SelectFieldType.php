@@ -21,6 +21,13 @@ class SelectFieldType extends FieldType
     protected $inputView = 'anomaly.field_type.select::input';
 
     /**
+     * The filter view.
+     *
+     * @var string
+     */
+    protected $filterView = 'anomaly.field_type.select::input';
+
+    /**
      * The default options handler.
      *
      * @var string
