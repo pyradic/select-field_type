@@ -1,15 +1,14 @@
 {
     "name": "anomaly/select-field_type",
     "type": "streams-addon",
-    "description": "A select dropdown field type.",
+    "description": "A language dropdown field type.",
     "keywords": [
-        "streams-addon",
-        "select",
-        "pyrocms",
-        "laravel"
+        "streams field type",
+        "streams addon",
+        "field type"
     ],
     "homepage": "http://anomaly.is/",
-    "version": "1.0.0-alpha",
+    "version": "1.0.0",
     "license": "MIT",
     "authors": [
         {
@@ -26,11 +25,5 @@
         "psr-4": {
             "Anomaly\\SelectFieldType\\": "src/"
         }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0.x-dev"
-        }
-    },
-    "minimum-stability": "dev"
+    }
 }
