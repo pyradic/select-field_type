@@ -22,17 +22,7 @@ class SelectFieldTypePresenter extends FieldTypePresenter
     protected $object;
 
     /**
-     * Return the key value.
-     *
-     * @return string|null
-     */
-    public function key()
-    {
-        return $this->object->getValue();
-    }
-
-    /**
-     * Return the value from the key value.
+     * Return the selection value.
      *
      * @return string|null
      */
@@ -40,10 +30,10 @@ class SelectFieldTypePresenter extends FieldTypePresenter
     {
         $options = $this->object->getOptions();
 
-        if (!$this->object->getValue()) {
+        if (!$key = $this->object->getValue()) {
             return null;
         }
 
-        return trans(array_get($options, $this->object->getValue()));
+        return trans(array_get($options, $key));
     }
 }
