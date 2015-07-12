@@ -35,7 +35,7 @@ class Layouts
                 array_map(
                     function ($path) use ($theme) {
                         return 'theme::' . ltrim(
-                            str_replace($theme->getPath('resources/views/layouts'), '', $path),
+                            str_replace($theme->getPath('resources/views'), '', $path),
                             '/'
                         );
                     },
