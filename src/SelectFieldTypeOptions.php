@@ -30,6 +30,6 @@ class SelectFieldTypeOptions
             $options = $this->dispatch(new ParseOptions($options));
         }
 
-        return array_filter([null => $fieldType->getPlaceholder()] + $options);
+        $fieldType->setOptions(array_filter([null => $fieldType->getPlaceholder()] + $options));
     }
 }

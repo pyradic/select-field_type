@@ -1,6 +1,8 @@
 <?php namespace Anomaly\SelectFieldType;
 
+use Anomaly\SelectFieldType\Command\BuildOptions;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
+use Illuminate\Foundation\Bus\DispatchesCommands;
 
 /**
  * Class SelectFieldType
@@ -12,6 +14,8 @@ use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
  */
 class SelectFieldType extends FieldType
 {
+
+    use DispatchesCommands;
 
     /**
      * The input view.
@@ -28,12 +32,45 @@ class SelectFieldType extends FieldType
     protected $filterView = 'anomaly.field_type.select::input';
 
     /**
+     * The field type config.
+     *
+     * @var array
+     */
+    protected $config = [
+        'handler' => 'Anomaly\SelectFieldType\SelectFieldTypeOptions@handle'
+    ];
+
+    /**
+     * The dropdown options.
+     *
+     * @var null|array
+     */
+    protected $options = null;
+
+    /**
      * Get the dropdown options.
      *
      * @return array
      */
     public function getOptions()
     {
-        return app()->call('Anomaly\SelectFieldType\SelectFieldTypeOptions@handle', ['fieldType' => $this]);
+        if ($this->options === null) {
+            $this->dispatch(new BuildOptions($this));
+        }
+
+        return $this->options;
+    }
+
+    /**
+     * Set the options.
+     *
+     * @param array $options
+     * @return $this
+     */
+    public function setOptions(array $options)
+    {
+        $this->options = $options;
+
+        return $this;
     }
 }
