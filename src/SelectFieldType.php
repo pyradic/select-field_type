@@ -58,7 +58,17 @@ class SelectFieldType extends FieldType
             $this->dispatch(new BuildOptions($this));
         }
 
-        return $this->options;
+        $topOptions = array_get($this->getConfig(), 'top_options');
+
+        if (!is_array($topOptions)) {
+            $topOptions = array_filter(array_reverse(explode("\r\n", $topOptions)));
+        }
+
+        foreach ($topOptions as $key) {
+            $this->options = [$key => $this->options[$key]] + $this->options;
+        }
+
+        return array_filter([null => $this->getPlaceholder()] + $this->options);
     }
 
     /**
