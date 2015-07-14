@@ -39,15 +39,31 @@ class ParseOptions implements SelfHandling
     {
         $options = [];
 
+        $group = null;
+
         foreach (explode("\n", $this->options) as $option) {
+
+            // Find option [groups]
+            if (starts_with($option, '[')) {
+
+                $group = trans(substr(trim($option), 1, -1));
+
+                $options[$group] = [];
+
+                continue;
+            }
 
             // Split on the first ":"
             $option = explode(':', $option, 2);
 
-            $key   = array_shift($option);
-            $value = $option ? array_shift($option) : $key;
+            $key   = ltrim(trim(array_shift($option)));
+            $value = ltrim(trim($option ? array_shift($option) : $key));
 
-            $options[$key] = ltrim(trim($value));
+            if ($group) {
+                $options[$group][$key] = $value;
+            } else {
+                $options[$key] = $value;
+            }
         }
 
         return $options;
