@@ -2,7 +2,7 @@
 
 use Anomaly\SelectFieldType\Command\BuildOptions;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
-use Illuminate\Foundation\Bus\DispatchesCommands;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
  * Class SelectFieldType
@@ -15,7 +15,7 @@ use Illuminate\Foundation\Bus\DispatchesCommands;
 class SelectFieldType extends FieldType
 {
 
-    use DispatchesCommands;
+    use DispatchesJobs;
 
     /**
      * The input view.

@@ -1,7 +1,7 @@
 <?php namespace Anomaly\SelectFieldType;
 
 use Anomaly\SelectFieldType\Command\ParseOptions;
-use Illuminate\Foundation\Bus\DispatchesCommands;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
  * Class SelectFieldTypeOptions
@@ -14,7 +14,7 @@ use Illuminate\Foundation\Bus\DispatchesCommands;
 class SelectFieldTypeOptions
 {
 
-    use DispatchesCommands;
+    use DispatchesJobs;
 
     /**
      * Handle the select options.
