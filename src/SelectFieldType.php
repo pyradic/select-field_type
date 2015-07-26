@@ -68,7 +68,7 @@ class SelectFieldType extends FieldType
             $this->options = [$key => $this->options[$key]] + $this->options;
         }
 
-        return array_filter([null => $this->getPlaceholder()] + $this->options);
+        return array_filter([null => $this->getPlaceholder()] + (array)$this->options);
     }
 
     /**
