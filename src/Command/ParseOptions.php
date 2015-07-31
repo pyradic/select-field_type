@@ -54,7 +54,11 @@ class ParseOptions implements SelfHandling
             }
 
             // Split on the first ":"
-            $option = explode(':', $option, 2);
+            if (str_is('*:*', $option)) {
+                $option = explode(':', $option, 2);
+            } else {
+                $option = [$option, $option];
+            }
 
             $key   = ltrim(trim(array_shift($option)));
             $value = ltrim(trim($option ? array_shift($option) : $key));
