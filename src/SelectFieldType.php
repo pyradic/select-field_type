@@ -68,7 +68,7 @@ class SelectFieldType extends FieldType
             $this->options = [$key => $this->options[$key]] + $this->options;
         }
 
-        return array_filter([null => $this->getPlaceholder()] + (array)$this->options);
+        return $this->options;
     }
 
     /**
@@ -82,5 +82,15 @@ class SelectFieldType extends FieldType
         $this->options = $options;
 
         return $this;
+    }
+
+    /**
+     * Get the placeholder.
+     *
+     * @return null|string
+     */
+    public function getPlaceholder()
+    {
+        return ($this->placeholder !== null) ? $this->placeholder : 'anomaly.field_type.select::input.placeholder';
     }
 }
