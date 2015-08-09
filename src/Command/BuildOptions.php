@@ -39,6 +39,12 @@ class BuildOptions implements SelfHandling
      */
     public function handle(Container $container)
     {
-        $container->call(array_get($this->fieldType->getConfig(), 'handler'), ['fieldType' => $this->fieldType]);
+        $handler = array_get($this->fieldType->getConfig(), 'handler');
+
+        if (is_string($handler) && !str_contains($handler, '@')) {
+            $handler .= '@handle';
+        }
+
+        $container->call($handler, ['fieldType' => $this->fieldType]);
     }
 }
