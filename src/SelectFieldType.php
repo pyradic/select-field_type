@@ -29,7 +29,7 @@ class SelectFieldType extends FieldType
      *
      * @var string
      */
-    protected $filterView = 'anomaly.field_type.select::input';
+    protected $filterView = 'anomaly.field_type.select::filter';
 
     /**
      * The field type config.
