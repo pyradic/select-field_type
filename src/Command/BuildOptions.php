@@ -41,7 +41,7 @@ class BuildOptions implements SelfHandling
     {
         $handler = array_get($this->fieldType->getConfig(), 'handler');
 
-        if (!class_exists($handler)) {
+        if (!class_exists($handler) && !str_contains($handler, '@')) {
             $handler = array_get($this->fieldType->getHandlers(), $handler);
         }
 
