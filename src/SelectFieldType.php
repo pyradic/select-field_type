@@ -41,6 +41,16 @@ class SelectFieldType extends FieldType
     ];
 
     /**
+     * The option handlers.
+     *
+     * @var array
+     */
+    protected $handlers = [
+        'emails'  => 'Anomaly\SelectFieldType\Handler\Emails',
+        'layouts' => 'Anomaly\SelectFieldType\Handler\Layouts'
+    ];
+
+    /**
      * The dropdown options.
      *
      * @var null|array
@@ -82,6 +92,16 @@ class SelectFieldType extends FieldType
         $this->options = $options;
 
         return $this;
+    }
+
+    /**
+     * Get the handlers.
+     *
+     * @return array
+     */
+    public function getHandlers()
+    {
+        return $this->handlers;
     }
 
     /**

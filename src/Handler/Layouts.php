@@ -28,26 +28,24 @@ class Layouts
     {
         $theme = $themes->get($config->get('streams::themes.standard.active'));
 
-        $options = $files->files($theme->getPath('resources/views/layouts'));
+        $options = $files->allFiles($theme->getPath('resources/views/layouts'));
 
-        $fieldType->setOptions(
-            array_combine(
-                array_map(
-                    function ($path) use ($theme) {
-                        return 'theme::' . ltrim(
-                            str_replace($theme->getPath('resources/views'), '', $path),
-                            '/'
-                        );
-                    },
-                    $options
-                ),
-                array_map(
-                    function ($path) use ($theme) {
-                        return ltrim(str_replace($theme->getPath('resources/views/layouts'), '', $path), '/');
-                    },
-                    $options
-                )
+        $fieldType->setOptions(array_combine(
+            array_map(
+                function ($path) use ($theme) {
+                    return 'theme::' . ltrim(
+                        str_replace($theme->getPath('resources/views'), '', $path),
+                        '/'
+                    );
+                },
+                $options
+            ),
+            array_map(
+                function ($path) use ($theme) {
+                    return ltrim(str_replace($theme->getPath('resources/views/layouts'), '', $path), '/');
+                },
+                $options
             )
-        );
+        ));
     }
 }
