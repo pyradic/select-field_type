@@ -46,8 +46,9 @@ class SelectFieldType extends FieldType
      * @var array
      */
     protected $handlers = [
-        'emails'  => 'Anomaly\SelectFieldType\Handler\Emails',
-        'layouts' => 'Anomaly\SelectFieldType\Handler\Layouts'
+        'emails'     => 'Anomaly\SelectFieldType\Handler\Emails',
+        'layouts'    => 'Anomaly\SelectFieldType\Handler\Layouts',
+        'currencies' => 'Anomaly\SelectFieldType\Handler\Currencies'
     ];
 
     /**
