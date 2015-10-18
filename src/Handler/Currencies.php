@@ -23,6 +23,11 @@ class Currencies
      */
     public function handle(SelectFieldType $fieldType, Repository $config)
     {
-        $fieldType->setOptions($config->get('streams::currencies.enabled'));
+        $fieldType->setOptions(
+            array_combine(
+                $config->get('streams::currencies.enabled'),
+                $config->get('streams::currencies.enabled')
+            )
+        );
     }
 }
