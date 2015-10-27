@@ -1,6 +1,7 @@
 <?php namespace Anomaly\SelectFieldType;
 
 use Anomaly\SelectFieldType\Command\ParseOptions;
+use Illuminate\Contracts\Container\Container;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
@@ -22,12 +23,16 @@ class SelectFieldTypeOptions
      * @param SelectFieldType $fieldType
      * @return array
      */
-    public function handle(SelectFieldType $fieldType)
+    public function handle(SelectFieldType $fieldType, Container $container)
     {
         $options = array_get($fieldType->getConfig(), 'options', []);
 
         if (is_string($options)) {
             $options = $this->dispatch(new ParseOptions($options));
+        }
+
+        if ($options instanceof \Closure) {
+            $options = $container->call($options);
         }
 
         $fieldType->setOptions($options);
