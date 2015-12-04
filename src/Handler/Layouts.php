@@ -26,7 +26,7 @@ class Layouts
      */
     public function handle(SelectFieldType $fieldType, ThemeCollection $themes, Repository $config, Filesystem $files)
     {
-        $theme = $themes->get($config->get('streams::themes.standard.active'));
+        $theme = $themes->get($config->get('streams::themes.standard'));
 
         $options = $files->allFiles($theme->getPath('resources/views/layouts'));
 
