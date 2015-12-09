@@ -116,6 +116,6 @@ class SelectFieldType extends FieldType
      */
     public function getInputView()
     {
-        return 'anomaly.field_type.select::' . $this->config('mode');
+        return 'anomaly.field_type.select::' . $this->config('mode', 'dropdown');
     }
 }
