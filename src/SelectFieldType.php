@@ -18,13 +18,6 @@ class SelectFieldType extends FieldType
     use DispatchesJobs;
 
     /**
-     * The input view.
-     *
-     * @var string
-     */
-    protected $inputView = 'anomaly.field_type.select::input';
-
-    /**
      * The filter view.
      *
      * @var string
@@ -37,6 +30,7 @@ class SelectFieldType extends FieldType
      * @var array
      */
     protected $config = [
+        'mode'    => 'dropdown',
         'handler' => 'Anomaly\SelectFieldType\SelectFieldTypeOptions@handle'
     ];
 
@@ -113,5 +107,15 @@ class SelectFieldType extends FieldType
     public function getPlaceholder()
     {
         return ($this->placeholder !== null) ? $this->placeholder : 'anomaly.field_type.select::input.placeholder';
+    }
+
+    /**
+     * Return the input view.
+     *
+     * @return string
+     */
+    public function getInputView()
+    {
+        return 'anomaly.field_type.select::' . $this->config('mode');
     }
 }
