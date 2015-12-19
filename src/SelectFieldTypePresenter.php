@@ -40,7 +40,7 @@ class SelectFieldTypePresenter extends FieldTypePresenter
     {
         $options = $this->object->getOptions();
 
-        if (!$key = $this->object->getValue()) {
+        if (($key = $this->object->getValue()) === null) {
             return null;
         }
 
