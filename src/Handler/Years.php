@@ -34,6 +34,6 @@ class Years
             $years = array_reverse($years);
         }
 
-        $fieldType->setOptions($years);
+        $fieldType->setOptions(array_combine($years, $years));
     }
 }
