@@ -2,7 +2,6 @@
 
 use Anomaly\SelectFieldType\SelectFieldType;
 use Illuminate\Config\Repository;
-use Illuminate\Filesystem\Filesystem;
 
 /**
  * Class Currencies
@@ -23,10 +22,12 @@ class Currencies
      */
     public function handle(SelectFieldType $fieldType, Repository $config)
     {
+        $currencies = array_values($config->get('streams::currencies.enabled'));
+
         $fieldType->setOptions(
             array_combine(
-                $config->get('streams::currencies.enabled'),
-                $config->get('streams::currencies.enabled')
+                $currencies,
+                $currencies
             )
         );
     }
