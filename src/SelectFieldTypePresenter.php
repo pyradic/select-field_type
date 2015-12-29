@@ -44,6 +44,10 @@ class SelectFieldTypePresenter extends FieldTypePresenter
             return null;
         }
 
-        return trans(array_get($options, $key));
+        if (!str_contains($value = array_get($options, $key), '::')) {
+            return $value;
+        }
+
+        return trans($value);
     }
 }
