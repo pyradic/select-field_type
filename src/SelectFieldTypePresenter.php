@@ -50,4 +50,18 @@ class SelectFieldTypePresenter extends FieldTypePresenter
 
         return trans($value);
     }
+
+    /**
+     * Return the currency symbol.
+     *
+     * @return string|null
+     */
+    public function symbol()
+    {
+        if (($key = $this->object->getValue()) === null) {
+            return null;
+        }
+
+        return config('streams::currencies.supported.' . $key . '.symbol');
+    }
 }
