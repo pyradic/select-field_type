@@ -1,3 +1,8 @@
+{{ asset_add('scripts.js', 'anomaly.field_type.select::js/select2.full.min.js') }}
+{{ asset_add('scripts.js', 'anomaly.field_type.select::js/input.js') }}
+{{ asset_add('styles.css', 'anomaly.field_type.select::less/select2.less') }}
+{{ asset_add('styles.css', 'anomaly.field_type.select::less/select2-bootstrap.less') }}
+
 <select class="form-control" name="{{ field_type.input_name }}" {{ field_type.disabled ? 'disabled' }}>
 
     {% if not field_type.required %}
