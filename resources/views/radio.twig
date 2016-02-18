@@ -1,4 +1,4 @@
-<div class="c-inputs-stacked">
+<div class="c-inputs-stacked" {{ html_attributes(field_type.attributes) }}>
 
     {% for value, option in field_type.options %}
         {% if option is iterable %}
