@@ -43,6 +43,7 @@ class SelectFieldType extends FieldType
         'years'      => 'Anomaly\SelectFieldType\Handler\Years',
         'emails'     => 'Anomaly\SelectFieldType\Handler\Emails',
         'layouts'    => 'Anomaly\SelectFieldType\Handler\Layouts',
+        'countries'  => 'Anomaly\SelectFieldType\Handler\Countries',
         'timezones'  => 'Anomaly\SelectFieldType\Handler\Timezones',
         'currencies' => 'Anomaly\SelectFieldType\Handler\Currencies'
     ];
