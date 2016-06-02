@@ -35,10 +35,36 @@ class Layouts
     ) {
         $theme = $themes->get($config->get('streams::themes.standard'));
 
-        $options = $files->allFiles($theme->getPath('resources/views/layouts'));
+        $layouts = $files->allFiles($theme->getPath('resources/views/layouts'));
 
-        $fieldType->setOptions(
-            array_combine(
+        $options = array_combine(
+            array_map(
+                function ($path) use ($theme) {
+                    return 'theme::' . ltrim(
+                        str_replace($theme->getPath('resources/views'), '', $path),
+                        '/'
+                    );
+                },
+                $layouts
+            ),
+            array_map(
+                function ($path) use ($theme, $str) {
+                    return $str->humanize(
+                        basename(
+                            ltrim(str_replace($theme->getPath('resources/views/layouts'), '', $path), '/'),
+                            '.twig'
+                        )
+                    );
+                },
+                $layouts
+            )
+        );
+
+        foreach ($files->directories($theme->getPath('resources/views/layouts')) as $directory) {
+
+            $layouts = $files->allFiles($directory);
+
+            $options[$str->humanize(str_slug(basename($directory), '_'))] = array_combine(
                 array_map(
                     function ($path) use ($theme) {
                         return 'theme::' . ltrim(
@@ -46,7 +72,7 @@ class Layouts
                             '/'
                         );
                     },
-                    $options
+                    $layouts
                 ),
                 array_map(
                     function ($path) use ($theme, $str) {
@@ -57,9 +83,11 @@ class Layouts
                             )
                         );
                     },
-                    $options
+                    $layouts
                 )
-            )
-        );
+            );
+        }
+
+        $fieldType->setOptions($options);
     }
 }
