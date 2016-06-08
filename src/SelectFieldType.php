@@ -104,6 +104,16 @@ class SelectFieldType extends FieldType
     }
 
     /**
+     * Get the placeholder.
+     *
+     * @return null|string
+     */
+    public function getPlaceholder()
+    {
+        return is_null($this->placeholder) ? 'anomaly.field_type.select::input.placeholder' : $this->placeholder;
+    }
+
+    /**
      * Return the input view.
      *
      * @return string
