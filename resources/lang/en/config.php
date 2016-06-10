@@ -12,7 +12,7 @@ return [
     'options'       => [
         'label'        => 'Options',
         'instructions' => 'Enter options below in a <strong>key: Value</strong> or <strong>Value</strong> only format. Enter each option on a new line.',
-        'placeholder'  => "key: Value"
+        'placeholder'  => 'key: Value'
     ],
     'default_value' => [
         'label'        => 'Default Value',
