@@ -137,4 +137,18 @@ class SelectFieldType extends FieldType
 
         return 'anomaly.field_type.select::' . $this->config('mode', 'dropdown');
     }
+
+    /**
+     * Get the class.s
+     *
+     * @return null|string
+     */
+    public function getClass()
+    {
+        if ($class = parent::getClass()) {
+            return $class;
+        }
+
+        return $this->config('mode') == 'dropdown' ? 'c-select form-control' : 'c-inputs-stacked';
+    }
 }
