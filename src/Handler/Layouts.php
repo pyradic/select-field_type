@@ -37,11 +37,13 @@ class Layouts
 
         $layouts = $files->allFiles($directory = $theme->getPath('resources/views/layouts'));
 
+        $prefix = $theme->getPath('resources/views');
+
         $options = array_combine(
             array_map(
-                function ($path) use ($directory) {
+                function ($path) use ($prefix) {
 
-                    $path = str_replace($directory, '', $path);
+                    $path = str_replace($prefix, '', $path);
                     $path = trim($path, DIRECTORY_SEPARATOR);
                     $path = str_replace(basename($path), basename(pathinfo($path, PATHINFO_FILENAME), '.blade'), $path);
                     $path = str_replace(DIRECTORY_SEPARATOR, '.', $path);
