@@ -41,8 +41,12 @@ class Layouts
             array_map(
                 function ($path) use ($theme) {
                     return 'theme::' . ltrim(
-                        str_replace($theme->getPath('resources/views'), '', $path),
-                        '/'
+                        str_replace(
+                            $theme->getPath('resources/views'),
+                            '',
+                            str_replace('\\', '/', $path)
+                        ),
+                        '/\\'
                     );
                 },
                 $layouts
@@ -51,7 +55,14 @@ class Layouts
                 function ($path) use ($theme, $str) {
                     return $str->humanize(
                         basename(
-                            ltrim(str_replace($theme->getPath('resources/views/layouts'), '', $path), '/'),
+                            ltrim(
+                                str_replace(
+                                    $theme->getPath('resources/views/layouts'),
+                                    '',
+                                    str_replace('\\', '/', $path)
+                                ),
+                                '/\\'
+                            ),
                             '.twig'
                         )
                     );
@@ -68,8 +79,12 @@ class Layouts
                 array_map(
                     function ($path) use ($theme) {
                         return 'theme::' . ltrim(
-                            str_replace($theme->getPath('resources/views'), '', $path),
-                            '/'
+                            str_replace(
+                                $theme->getPath('resources/views'),
+                                '',
+                                str_replace('\\', '/', $path)
+                            ),
+                            '/\\'
                         );
                     },
                     $layouts
@@ -78,7 +93,14 @@ class Layouts
                     function ($path) use ($theme, $str) {
                         return $str->humanize(
                             basename(
-                                ltrim(str_replace($theme->getPath('resources/views/layouts'), '', $path), '/'),
+                                ltrim(
+                                    str_replace(
+                                        $theme->getPath('resources/views/layouts'),
+                                        '',
+                                        str_replace('\\', '/', $path)
+                                    ),
+                                    '/\\'
+                                ),
                                 '.twig'
                             )
                         );
