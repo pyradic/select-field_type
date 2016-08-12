@@ -35,80 +35,34 @@ class Layouts
     ) {
         $theme = $themes->get($config->get('streams::themes.standard'));
 
-        $layouts = $files->allFiles($theme->getPath('resources/views/layouts'));
+        $layouts = $files->allFiles($directory = $theme->getPath('resources/views/layouts'));
 
         $options = array_combine(
             array_map(
-                function ($path) use ($theme) {
-                    return 'theme::' . ltrim(
-                        str_replace(
-                            $theme->getPath('resources/views'),
-                            '',
-                            str_replace('\\', '/', $path)
-                        ),
-                        '/\\'
-                    );
+                function ($path) use ($directory) {
+
+                    $path = str_replace($directory, '', $path);
+                    $path = trim($path, DIRECTORY_SEPARATOR);
+                    $path = str_replace(basename($path), basename(pathinfo($path, PATHINFO_FILENAME), '.blade'), $path);
+                    $path = str_replace(DIRECTORY_SEPARATOR, '.', $path);
+
+                    return 'theme::' . $path;
                 },
                 $layouts
             ),
             array_map(
-                function ($path) use ($theme, $str) {
-                    return $str->humanize(
-                        basename(
-                            ltrim(
-                                str_replace(
-                                    $theme->getPath('resources/views/layouts'),
-                                    '',
-                                    str_replace('\\', '/', $path)
-                                ),
-                                '/\\'
-                            ),
-                            '.twig'
-                        )
-                    );
+                function ($path) use ($directory, $str) {
+
+                    $path = str_replace($directory, '', $path);
+                    $path = trim($path, DIRECTORY_SEPARATOR);
+                    $path = str_replace(basename($path), basename(pathinfo($path, PATHINFO_FILENAME), '.blade'), $path);
+                    $path = str_replace(DIRECTORY_SEPARATOR, ' > ', $path);
+
+                    return ucwords($str->humanize($path));
                 },
                 $layouts
             )
         );
-
-        foreach ($files->directories($theme->getPath('resources/views/layouts')) as $directory) {
-
-            $layouts = $files->allFiles($directory);
-
-            $options[$str->humanize(str_slug(basename($directory), '_'))] = array_combine(
-                array_map(
-                    function ($path) use ($theme) {
-                        return 'theme::' . ltrim(
-                            str_replace(
-                                $theme->getPath('resources/views'),
-                                '',
-                                str_replace('\\', '/', $path)
-                            ),
-                            '/\\'
-                        );
-                    },
-                    $layouts
-                ),
-                array_map(
-                    function ($path) use ($theme, $str) {
-                        return $str->humanize(
-                            basename(
-                                ltrim(
-                                    str_replace(
-                                        $theme->getPath('resources/views/layouts'),
-                                        '',
-                                        str_replace('\\', '/', $path)
-                                    ),
-                                    '/\\'
-                                ),
-                                '.twig'
-                            )
-                        );
-                    },
-                    $layouts
-                )
-            );
-        }
 
         $fieldType->setOptions($options);
     }
