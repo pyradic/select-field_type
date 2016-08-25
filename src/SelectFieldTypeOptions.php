@@ -10,7 +10,6 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\SelectFieldType
  */
 class SelectFieldTypeOptions
 {
@@ -20,7 +19,7 @@ class SelectFieldTypeOptions
     /**
      * Handle the select options.
      *
-     * @param SelectFieldType $fieldType
+     * @param  SelectFieldType $fieldType
      * @return array
      */
     public function handle(SelectFieldType $fieldType, Container $container)

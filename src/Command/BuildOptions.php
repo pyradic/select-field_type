@@ -2,7 +2,7 @@
 
 use Anomaly\SelectFieldType\SelectFieldType;
 use Illuminate\Container\Container;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 
 /**
  * Class BuildOptions
@@ -10,9 +10,8 @@ use Illuminate\Contracts\Bus\SelfHandling;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\SelectFieldType\Command
  */
-class BuildOptions implements SelfHandling
+class BuildOptions
 {
 
     /**

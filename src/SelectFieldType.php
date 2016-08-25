@@ -10,7 +10,6 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\SelectFieldType
  */
 class SelectFieldType extends FieldType
 {
@@ -38,7 +37,7 @@ class SelectFieldType extends FieldType
      */
     protected $config = [
         'mode'    => 'dropdown',
-        'handler' => 'Anomaly\SelectFieldType\SelectFieldTypeOptions@handle'
+        'handler' => 'Anomaly\SelectFieldType\SelectFieldTypeOptions@handle',
     ];
 
     /**
@@ -53,7 +52,7 @@ class SelectFieldType extends FieldType
         'layouts'    => 'Anomaly\SelectFieldType\Handler\Layouts',
         'countries'  => 'Anomaly\SelectFieldType\Handler\Countries',
         'timezones'  => 'Anomaly\SelectFieldType\Handler\Timezones',
-        'currencies' => 'Anomaly\SelectFieldType\Handler\Currencies'
+        'currencies' => 'Anomaly\SelectFieldType\Handler\Currencies',
     ];
 
     /**
@@ -90,7 +89,7 @@ class SelectFieldType extends FieldType
     /**
      * Set the options.
      *
-     * @param array $options
+     * @param  array $options
      * @return $this
      */
     public function setOptions(array $options)
