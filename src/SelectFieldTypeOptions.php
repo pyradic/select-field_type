@@ -1,19 +1,11 @@
 <?php namespace Anomaly\SelectFieldType;
 
-use Anomaly\SelectFieldType\Command\ParseOptions;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Foundation\Bus\DispatchesJobs;
+use Anomaly\SelectFieldType\Command\ParseOptions;
 
-/**
- * Class SelectFieldTypeOptions
- *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
- */
 class SelectFieldTypeOptions
 {
-
     use DispatchesJobs;
 
     /**
