@@ -39,7 +39,7 @@ class BuildOptions
     public function handle(Container $container)
     {
         $handler = array_get($this->fieldType->getConfig(), 'handler');
-
+dd($handler);
         if (!class_exists($handler) && !str_contains($handler, '@')) {
             $handler = array_get($this->fieldType->getHandlers(), $handler);
         }

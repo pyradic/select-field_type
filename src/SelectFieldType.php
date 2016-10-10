@@ -47,6 +47,7 @@ class SelectFieldType extends FieldType
      */
     protected $handlers = [
         'years'      => 'Anomaly\SelectFieldType\Handler\Years',
+        'emails'     => 'Anomaly\SelectFieldType\Handler\Emails',
         'states'     => 'Anomaly\SelectFieldType\Handler\States',
         'layouts'    => 'Anomaly\SelectFieldType\Handler\Layouts',
         'countries'  => 'Anomaly\SelectFieldType\Handler\Countries',
