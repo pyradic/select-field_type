@@ -71,14 +71,4 @@ class SelectFieldTypePresenter extends FieldTypePresenter
 
         return array_merge($currency, compact('code'));
     }
-
-    /**
-     * Return the string value.
-     *
-     * @return null|string
-     */
-    public function __toString()
-    {
-        return $this->value();
-    }
 }
