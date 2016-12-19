@@ -71,4 +71,14 @@ class SelectFieldTypePresenter extends FieldTypePresenter
 
         return array_merge($currency, compact('code'));
     }
+
+    /**
+     * Return the contextual human value.
+     *
+     * @return null|string
+     */
+    public function __print()
+    {
+        return $this->value();
+    }
 }
