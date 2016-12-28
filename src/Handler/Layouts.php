@@ -34,6 +34,10 @@ class Layouts
     ) {
         $theme = $themes->get($config->get('streams::themes.standard'));
 
+        if (!$files->isDirectory($directory = $theme->getPath('resources/views/layouts'))) {
+            return [];
+        }
+
         $layouts = $files->allFiles($directory = $theme->getPath('resources/views/layouts'));
 
         $prefix = $theme->getPath('resources/views');
