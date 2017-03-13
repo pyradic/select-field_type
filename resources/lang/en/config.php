@@ -7,6 +7,7 @@ return [
         'option'       => [
             'dropdown' => 'Dropdown',
             'radio'    => 'Radio Buttons',
+            'select2'  => 'Select2',
         ],
     ],
     'options'       => [
