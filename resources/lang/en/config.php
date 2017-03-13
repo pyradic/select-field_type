@@ -5,9 +5,9 @@ return [
         'label'        => 'Mode',
         'instructions' => 'What kind of input would you like to display?',
         'option'       => [
+            'search'   => 'Search',
             'dropdown' => 'Dropdown',
             'radio'    => 'Radio Buttons',
-            'select2'  => 'Select2',
         ],
     ],
     'options'       => [
