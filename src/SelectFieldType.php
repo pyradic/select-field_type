@@ -138,7 +138,7 @@ class SelectFieldType extends FieldType
     }
 
     /**
-     * Get the class.s
+     * Get the class.
      *
      * @return null|string
      */
@@ -148,6 +148,6 @@ class SelectFieldType extends FieldType
             return $class;
         }
 
-        return $this->config('mode') == 'dropdown' ? 'c-select form-control' : 'c-inputs-stacked';
+        return $this->config('mode') == 'dropdown' ? 'custom-select form-control' : 'c-inputs-stacked';
     }
 }

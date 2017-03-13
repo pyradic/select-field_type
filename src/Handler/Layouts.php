@@ -34,6 +34,10 @@ class Layouts
     ) {
         $theme = $themes->get($config->get('streams::themes.standard'));
 
+        if (!$files->isDirectory($directory = $theme->getPath('resources/views/layouts'))) {
+            return [];
+        }
+
         $layouts = $files->allFiles($directory = $theme->getPath('resources/views/layouts'));
 
         $prefix = $theme->getPath('resources/views');
@@ -43,7 +47,7 @@ class Layouts
                 function ($path) use ($prefix) {
 
                     $path = str_replace($prefix, '', $path);
-                    $path = trim($path, DIRECTORY_SEPARATOR);
+                    $path = trim($path, '/\\');
                     $path = str_replace(basename($path), basename(pathinfo($path, PATHINFO_FILENAME), '.blade'), $path);
                     $path = str_replace(DIRECTORY_SEPARATOR, '.', $path);
 
