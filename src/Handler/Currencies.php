@@ -1,7 +1,7 @@
 <?php namespace Anomaly\SelectFieldType\Handler;
 
 use Anomaly\SelectFieldType\SelectFieldType;
-use Illuminate\Config\Repository;
+use Illuminate\Contracts\Config\Repository;
 
 /**
  * Class Currencies

@@ -8,6 +8,7 @@ return [
             'default_value' => 'dropdown',
             'options'       => [
                 'dropdown' => 'anomaly.field_type.select::config.mode.option.dropdown',
+                'search'   => 'anomaly.field_type.select::config.mode.option.search',
                 'radio'    => 'anomaly.field_type.select::config.mode.option.radio',
             ],
         ],
