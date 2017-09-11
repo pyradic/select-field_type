@@ -2,6 +2,7 @@
 
 use Anomaly\SelectFieldType\SelectFieldType;
 use Anomaly\Streams\Platform\Addon\Theme\ThemeCollection;
+use Anomaly\Streams\Platform\Support\Str;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Filesystem\Filesystem;
 
@@ -22,35 +23,52 @@ class Emails
      * @param ThemeCollection $themes
      * @param Repository      $config
      * @param Filesystem      $files
+     * @param Str             $str
      */
-    public function handle(SelectFieldType $fieldType, ThemeCollection $themes, Repository $config, Filesystem $files)
-    {
+    public function handle(
+        SelectFieldType $fieldType,
+        ThemeCollection $themes,
+        Repository $config,
+        Filesystem $files,
+        Str $str
+    ) {
         $theme = $themes->get($config->get('streams::themes.standard'));
 
-        if (!$files->isDirectory($theme->getPath('resources/views/layouts/emails'))) {
+        if (!$files->isDirectory($directory = $theme->getPath('resources/views/layouts'))) {
             return [];
         }
 
-        $options = $files->allFiles($theme->getPath('resources/views/layouts/emails'));
+        $layouts = $files->allFiles($directory = $theme->getPath('resources/views/layouts/emails'));
 
-        $fieldType->setOptions(
-            array_combine(
-                array_map(
-                    function ($path) use ($theme) {
-                        return 'theme::' . ltrim(
-                            str_replace($theme->getPath('resources/views'), '', $path),
-                            '/'
-                        );
-                    },
-                    $options
-                ),
-                array_map(
-                    function ($path) use ($theme) {
-                        return ltrim(str_replace($theme->getPath('resources/views/layouts/emails'), '', $path), '/');
-                    },
-                    $options
-                )
+        $prefix = $theme->getPath('resources/views');
+
+        $options = array_combine(
+            array_map(
+                function ($path) use ($prefix) {
+
+                    $path = str_replace($prefix, '', $path);
+                    $path = trim($path, '/\\');
+                    $path = str_replace(basename($path), basename(pathinfo($path, PATHINFO_FILENAME), '.blade'), $path);
+                    $path = str_replace(DIRECTORY_SEPARATOR, '.', $path);
+
+                    return 'theme::' . $path;
+                },
+                $layouts
+            ),
+            array_map(
+                function ($path) use ($directory, $str) {
+
+                    $path = str_replace($directory, '', $path);
+                    $path = trim($path, DIRECTORY_SEPARATOR);
+                    $path = str_replace(basename($path), basename(pathinfo($path, PATHINFO_FILENAME), '.blade'), $path);
+                    $path = str_replace(DIRECTORY_SEPARATOR, ' > ', $path);
+
+                    return ucwords($str->humanize($path));
+                },
+                $layouts
             )
         );
+
+        $fieldType->setOptions($options);
     }
 }
