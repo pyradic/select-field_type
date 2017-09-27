@@ -34,7 +34,7 @@ class Emails
     ) {
         $theme = $themes->get($config->get('streams::themes.standard'));
 
-        if (!$files->isDirectory($directory = $theme->getPath('resources/views/layouts'))) {
+        if (!$files->isDirectory($directory = $theme->getPath('resources/views/layouts/emails'))) {
             return [];
         }
 
