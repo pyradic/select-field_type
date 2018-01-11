@@ -1,6 +1,13 @@
 <?php namespace Anomaly\SelectFieldType;
 
 use Anomaly\SelectFieldType\Command\BuildOptions;
+use Anomaly\SelectFieldType\Handler\Years;
+use Anomaly\SelectFieldType\Handler\Emails;
+use Anomaly\SelectFieldType\Handler\States;
+use Anomaly\SelectFieldType\Handler\Layouts;
+use Anomaly\SelectFieldType\Handler\Countries;
+use Anomaly\SelectFieldType\Handler\Timezones;
+use Anomaly\SelectFieldType\Handler\Currencies;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
@@ -46,13 +53,13 @@ class SelectFieldType extends FieldType
      * @var array
      */
     protected $handlers = [
-        'years'      => 'Anomaly\SelectFieldType\Handler\Years',
-        'emails'     => 'Anomaly\SelectFieldType\Handler\Emails',
-        'states'     => 'Anomaly\SelectFieldType\Handler\States',
-        'layouts'    => 'Anomaly\SelectFieldType\Handler\Layouts',
-        'countries'  => 'Anomaly\SelectFieldType\Handler\Countries',
-        'timezones'  => 'Anomaly\SelectFieldType\Handler\Timezones',
-        'currencies' => 'Anomaly\SelectFieldType\Handler\Currencies',
+        'years'      => Years::class,
+        'emails'     => Emails::class,
+        'states'     => States::class,
+        'layouts'    => Layouts::class,
+        'countries'  => Countries::class,
+        'timezones'  => Timezones::class,
+        'currencies' => Currencies::class,
     ];
 
     /**
@@ -148,6 +155,8 @@ class SelectFieldType extends FieldType
             return $class;
         }
 
-        return $this->config('mode') == 'dropdown' ? 'custom-select form-control' : 'c-inputs-stacked';
+        return $this->config('mode') == 'dropdown'
+            ? 'custom-select form-control'
+            : 'c-inputs-stacked';
     }
 }
