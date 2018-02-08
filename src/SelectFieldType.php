@@ -22,6 +22,13 @@ class SelectFieldType extends FieldType
 {
 
     use DispatchesJobs;
+    
+    /**
+     * No default class.
+     *
+     * @var null
+     */
+    protected $class = null;
 
     /**
      * The input view.
