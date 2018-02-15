@@ -57,19 +57,25 @@ class SelectFieldTypePresenter extends FieldTypePresenter
      */
     public function symbol()
     {
+        if (!$currency = $this->currency()) {
+            return null;
+        }
+
+        return array_get($currency, 'symbol');
+    }
+
+    /**
+     * Return the currency information.
+     *
+     * @return array|null
+     */
+    public function currency()
+    {
         if (!$key = $this->key()) {
             return null;
         }
 
-        if (!$code = config('streams::countries.available.' . $key . '.currency')) {
-            return null;
-        }
-
-        if (!$currency = config('streams::currencies.supported.' . $code)) {
-            return null;
-        }
-
-        return array_merge($currency, compact('code'));
+        return config('streams::currencies.supported.' . $key);
     }
 
     /**
