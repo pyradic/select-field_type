@@ -5,6 +5,6 @@
     <option value="" disabled {{ not field_type.value ? 'selected' }}>{{ trans(field_type.placeholder) }}</option>
 
     {% for value, title in field_type.options %}
-        <option value="{{ value }}" {{ value == field_type.key ? 'selected' }}>{{ trans(title) }}</option>
+        <option value="{{ value }}" {{ value is same as(field_type.key) ? 'selected' }}>{{ trans(title) }}</option>
     {% endfor %}
 </select>
