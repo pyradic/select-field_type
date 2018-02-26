@@ -22,7 +22,7 @@ class SelectFieldType extends FieldType
 {
 
     use DispatchesJobs;
-    
+
     /**
      * No default class.
      *
@@ -164,6 +164,6 @@ class SelectFieldType extends FieldType
 
         return $this->config('mode') == 'dropdown'
             ? 'custom-select form-control'
-            : 'c-inputs-stacked';
+            : null;
     }
 }

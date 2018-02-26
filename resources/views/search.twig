@@ -3,7 +3,7 @@
 {{ asset_add("scripts.js", "anomaly.field_type.select::js/search.js") }}
 
 <select
-        class="search"
+        data-search
         name="{{ field_type.input_name }}"
         {{ html_attributes(field_type.attributes) }}
         {{ field_type.disabled ? 'disabled' }}
