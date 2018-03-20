@@ -6,6 +6,7 @@ return [
         'instructions' => 'What kind of input would you like to display?',
         'option'       => [
             'search'   => 'Search',
+            'buttons'  => 'Buttons',
             'dropdown' => 'Dropdown',
             'radio'    => 'Radio Buttons',
         ],
