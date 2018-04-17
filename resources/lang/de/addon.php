@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'title'       => 'Select',
-    'name'        => 'Select Feldtyp',
-    'description' => 'Ein Select Feldtyp.',
+    'title'       => 'Auswahl',
+    'name'        => 'Auswahl Feldtyp',
+    'description' => 'Ein Optionen Auswahl Feldtyp.',
 ];

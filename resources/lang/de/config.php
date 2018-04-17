@@ -13,8 +13,8 @@ return [
     ],
     'options'       => [
         'label'        => 'Optionen',
-        'instructions' => 'Geben Sie die Optionen unten nur im <strong>key: Value</strong> oder <strong>Value</strong> Format an. Geben Sie jede Option auf einer neuen Zeile an.',
-        'placeholder'  => 'key: Value',
+        'instructions' => 'Geben Sie die Optionen unten nur im <strong>Schlüssel: Wert</strong> oder <strong>Wert</strong> Format an. Geben Sie jede Option auf einer neuen Zeile an.',
+        'placeholder'  => 'Schlüssel: Wert',
     ],
     'default_value' => [
         'label'        => 'Standardwert',
