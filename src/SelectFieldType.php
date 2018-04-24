@@ -130,7 +130,7 @@ class SelectFieldType extends FieldType
      */
     public function getPlaceholder()
     {
-        if (!$this->placeholder && !$this->isRequired()) {
+        if (!$this->placeholder) {
             return 'anomaly.field_type.select::input.placeholder';
         }
 
