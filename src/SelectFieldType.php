@@ -1,13 +1,14 @@
 <?php namespace Anomaly\SelectFieldType;
 
 use Anomaly\SelectFieldType\Command\BuildOptions;
-use Anomaly\SelectFieldType\Handler\Years;
-use Anomaly\SelectFieldType\Handler\Emails;
-use Anomaly\SelectFieldType\Handler\States;
-use Anomaly\SelectFieldType\Handler\Layouts;
 use Anomaly\SelectFieldType\Handler\Countries;
-use Anomaly\SelectFieldType\Handler\Timezones;
 use Anomaly\SelectFieldType\Handler\Currencies;
+use Anomaly\SelectFieldType\Handler\Emails;
+use Anomaly\SelectFieldType\Handler\Layouts;
+use Anomaly\SelectFieldType\Handler\Months;
+use Anomaly\SelectFieldType\Handler\States;
+use Anomaly\SelectFieldType\Handler\Timezones;
+use Anomaly\SelectFieldType\Handler\Years;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
@@ -63,6 +64,7 @@ class SelectFieldType extends FieldType
         'years'      => Years::class,
         'emails'     => Emails::class,
         'states'     => States::class,
+        'months'     => Months::class,
         'layouts'    => Layouts::class,
         'countries'  => Countries::class,
         'timezones'  => Timezones::class,
