@@ -42,7 +42,7 @@ class Layouts
 
         $prefix = $theme->getPath('resources/views');
 
-        $options = array_combine(
+        $options['anomaly.field_type.select::input.theme_layouts'] = array_combine(
             array_map(
                 function ($path) use ($prefix) {
 

@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'placeholder' => 'Choose an option...',
+    'theme_layouts' => 'Theme Layouts',
+    'placeholder'   => 'Choose an option...',
 ];
