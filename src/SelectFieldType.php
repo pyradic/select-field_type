@@ -116,6 +116,19 @@ class SelectFieldType extends FieldType
     }
 
     /**
+     * Merge more options on.
+     *
+     * @param array $options
+     * @return $this
+     */
+    public function mergeOptions(array $options)
+    {
+        $this->options = array_merge($this->options, $options);
+
+        return $this;
+    }
+
+    /**
      * Get the handlers.
      *
      * @return array

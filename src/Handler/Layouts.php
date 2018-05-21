@@ -1,9 +1,11 @@
 <?php namespace Anomaly\SelectFieldType\Handler;
 
+use Anomaly\SelectFieldType\Event\SetLayoutOptions;
 use Anomaly\SelectFieldType\SelectFieldType;
 use Anomaly\Streams\Platform\Addon\Theme\ThemeCollection;
 use Anomaly\Streams\Platform\Support\Str;
 use Illuminate\Contracts\Config\Repository;
+use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Filesystem\Filesystem;
 
 /**
@@ -29,20 +31,31 @@ class Layouts
         SelectFieldType $fieldType,
         ThemeCollection $themes,
         Repository $config,
+        Dispatcher $events,
         Filesystem $files,
         Str $str
     ) {
         $theme = $themes->get($config->get('streams::themes.standard'));
 
+        /**
+         * If the layouts folder
+         * doesn't exist then skip
+         * all the noise below.
+         */
         if (!$files->isDirectory($directory = $theme->getPath('resources/views/layouts'))) {
-            return [];
+
+            $fieldType->setOptions([]);
+
+            $events->dispatch(new SetLayoutOptions($fieldType));
+
+            return;
         }
 
         $layouts = $files->allFiles($directory = $theme->getPath('resources/views/layouts'));
 
         $prefix = $theme->getPath('resources/views');
 
-        $options['anomaly.field_type.select::input.theme_layouts'] = array_combine(
+        $options = array_combine(
             array_map(
                 function ($path) use ($prefix) {
 
@@ -56,19 +69,22 @@ class Layouts
                 $layouts
             ),
             array_map(
-                function ($path) use ($directory, $str) {
+                function ($path) use ($directory, $prefix, $str) {
 
-                    $path = str_replace($directory, '', $path);
-                    $path = trim($path, DIRECTORY_SEPARATOR);
+                    $path = str_replace($prefix, '', $path);
+                    $path = trim($path, '/\\');
                     $path = str_replace(basename($path), basename(pathinfo($path, PATHINFO_FILENAME), '.blade'), $path);
-                    $path = str_replace(DIRECTORY_SEPARATOR, ' > ', $path);
+                    $path = str_replace(DIRECTORY_SEPARATOR, '/', $path);
 
-                    return ucwords($str->humanize($path));
+                    return 'theme::' . $path;
                 },
                 $layouts
             )
         );
 
-        $fieldType->setOptions($options);
+        $fieldType->setOptions(['streams::addon.theme' => $options]);
+
+        $events->dispatch(new SetLayoutOptions($fieldType));
     }
+
 }
