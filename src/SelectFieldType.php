@@ -79,6 +79,20 @@ class SelectFieldType extends FieldType
     protected $options = null;
 
     /**
+     * Get the config.
+     *
+     * @return array
+     */
+    public function getConfig()
+    {
+        $config = parent::getConfig();
+
+        $this->implodeOptions($config);
+
+        return $config;
+    }
+
+    /**
      * Get the dropdown options.
      *
      * @return array
@@ -180,5 +194,26 @@ class SelectFieldType extends FieldType
         return $this->config('mode') == 'dropdown'
             ? 'custom-select form-control'
             : null;
+    }
+
+    /**
+     * Implode array options into a string
+     * so that they can be edited in the CP.
+     *
+     * @param array $config
+     */
+    protected function implodeOptions(array &$config)
+    {
+        if (isset($config['options']) && is_array($config['options'])) {
+
+            array_walk(
+                $config['options'],
+                function (&$value, $key) {
+                    return $value = $key . ': ' . $value;
+                }
+            );
+
+            $config['options'] = implode("\n", $config['options']);
+        }
     }
 }
