@@ -79,20 +79,6 @@ class SelectFieldType extends FieldType
     protected $options = null;
 
     /**
-     * Get the config.
-     *
-     * @return array
-     */
-    public function getConfig()
-    {
-        $config = parent::getConfig();
-
-        $this->implodeOptions($config);
-
-        return $config;
-    }
-
-    /**
      * Get the dropdown options.
      *
      * @return array
@@ -216,4 +202,5 @@ class SelectFieldType extends FieldType
             $config['options'] = implode("\n", $config['options']);
         }
     }
+
 }
