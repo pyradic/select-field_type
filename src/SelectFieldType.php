@@ -6,6 +6,7 @@ use Anomaly\SelectFieldType\Handler\Currencies;
 use Anomaly\SelectFieldType\Handler\Emails;
 use Anomaly\SelectFieldType\Handler\Layouts;
 use Anomaly\SelectFieldType\Handler\Months;
+use Anomaly\SelectFieldType\Handler\Options;
 use Anomaly\SelectFieldType\Handler\States;
 use Anomaly\SelectFieldType\Handler\Timezones;
 use Anomaly\SelectFieldType\Handler\Years;
@@ -51,8 +52,8 @@ class SelectFieldType extends FieldType
      * @var array
      */
     protected $config = [
+        'handler' => 'options',
         'mode'    => 'dropdown',
-        'handler' => 'Anomaly\SelectFieldType\SelectFieldTypeOptions@handle',
     ];
 
     /**
@@ -66,6 +67,7 @@ class SelectFieldType extends FieldType
         'states'     => States::class,
         'months'     => Months::class,
         'layouts'    => Layouts::class,
+        'options'    => Options::class,
         'countries'  => Countries::class,
         'timezones'  => Timezones::class,
         'currencies' => Currencies::class,

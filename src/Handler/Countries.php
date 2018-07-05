@@ -26,9 +26,9 @@ class Countries
                 array_keys($config->get('streams::countries.available')),
                 array_map(
                     function ($country) {
-                        return $country['name'];
+                        return 'streams::country.' . $country;
                     },
-                    $config->get('streams::countries.available')
+                    array_keys($config->get('streams::countries.available'))
                 )
             )
         );

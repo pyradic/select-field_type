@@ -1,18 +1,18 @@
 <?php namespace Anomaly\SelectFieldType;
 
+use Anomaly\SelectFieldType\Command\ParseOptions;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use Anomaly\SelectFieldType\Command\ParseOptions;
 
 class SelectFieldTypeOptions
 {
+
     use DispatchesJobs;
 
     /**
      * Handle the select options.
      *
      * @param  SelectFieldType $fieldType
-     * @return array
      */
     public function handle(SelectFieldType $fieldType, Container $container)
     {
@@ -24,6 +24,10 @@ class SelectFieldTypeOptions
 
         if ($options instanceof \Closure) {
             $options = $container->call($options);
+        }
+
+        if (is_null($options)) {
+            $options = [];
         }
 
         $fieldType->setOptions($options);
