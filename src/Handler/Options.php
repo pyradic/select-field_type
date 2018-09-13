@@ -27,11 +27,11 @@ class Options
         $options = array_get($fieldType->getConfig(), 'options', []);
 
         if (is_string($options)) {
-            $options = $this->dispatch(new ParseOptions($options));
+            $options = $this->dispatch(new ParseOptions($fieldType, $options));
         }
 
         if ($options instanceof \Closure) {
-            $options = $container->call($options);
+            $options = $container->call($options, compact('fieldType'));
         }
 
         $fieldType->setOptions((array)$options);

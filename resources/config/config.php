@@ -21,4 +21,7 @@ return [
     'default_value' => [
         'type' => 'anomaly.field_type.text',
     ],
+    'separator'     => [
+        'type' => 'anomaly.field_type.text',
+    ],
 ];

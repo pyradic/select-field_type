@@ -20,4 +20,9 @@ return [
         'label'        => 'Default Value',
         'instructions' => 'Enter the default value if any.',
     ],
+    'separator'     => [
+        'label'        => 'Separator',
+        'instructions' => 'Specify a custom <strong>key:value</strong> separator if needed.',
+        'placeholder'  => ':',
+    ],
 ];

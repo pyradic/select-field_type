@@ -1,5 +1,6 @@
 <?php namespace Anomaly\SelectFieldType\Command;
 
+use Anomaly\SelectFieldType\SelectFieldType;
 
 
 /**
@@ -13,6 +14,13 @@ class ParseOptions
 {
 
     /**
+     * The select field type.
+     *
+     * @var SelectFieldType
+     */
+    protected $fieldType;
+
+    /**
      * The string options.
      *
      * @var string
@@ -22,11 +30,13 @@ class ParseOptions
     /**
      * Create a new ParseOptions instance.
      *
+     * @param SelectFieldType $fieldType
      * @param $options
      */
-    public function __construct($options)
+    public function __construct(SelectFieldType $fieldType, $options)
     {
-        $this->options = $options;
+        $this->options   = $options;
+        $this->fieldType = $fieldType;
     }
 
     /**
@@ -39,6 +49,10 @@ class ParseOptions
         $options = [];
 
         $group = null;
+
+        if (!$separator = trim($this->fieldType->config('separator', ':'))) {
+            $separator = ':';
+        }
 
         foreach (explode("\n", $this->options) as $option) {
 
@@ -53,8 +67,8 @@ class ParseOptions
             }
 
             // Split on the first ":"
-            if (str_is('*:*', $option)) {
-                $option = explode(':', $option, 2);
+            if (str_is('*' . $separator . '*', $option)) {
+                $option = explode($separator, $option, 2);
             } else {
                 $option = [$option, $option];
             }
