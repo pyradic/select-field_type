@@ -18,10 +18,10 @@ return [
         'required' => true,
         'type'     => 'anomaly.field_type.textarea',
     ],
-    'default_value' => [
+    'separator'     => [
         'type' => 'anomaly.field_type.text',
     ],
-    'separator'     => [
+    'default_value' => [
         'type' => 'anomaly.field_type.text',
     ],
 ];
