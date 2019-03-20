@@ -35,7 +35,15 @@ class Layouts
         Filesystem $files,
         Str $str
     ) {
-        $theme = $themes->get($config->get('streams::themes.standard'));
+
+        /**
+         * If for some reason we don't
+         * have a theme specified or
+         * if it can't be found..
+         */
+        if (!$theme = $themes->get($config->get('streams::themes.standard'))) {
+            return;
+        }
 
         /**
          * If the layouts folder
