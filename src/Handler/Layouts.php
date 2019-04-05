@@ -5,15 +5,14 @@ use Anomaly\SelectFieldType\SelectFieldType;
 use Anomaly\Streams\Platform\Addon\Theme\ThemeCollection;
 use Anomaly\Streams\Platform\Support\Str;
 use Illuminate\Contracts\Config\Repository;
-use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Filesystem\Filesystem;
 
 /**
  * Class Layouts
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class Layouts
 {
@@ -31,7 +30,6 @@ class Layouts
         SelectFieldType $fieldType,
         ThemeCollection $themes,
         Repository $config,
-        Dispatcher $events,
         Filesystem $files,
         Str $str
     ) {
@@ -54,7 +52,7 @@ class Layouts
 
             $fieldType->setOptions([]);
 
-            $events->dispatch(new SetLayoutOptions($fieldType));
+            event(new SetLayoutOptions($fieldType));
 
             return;
         }
@@ -92,7 +90,7 @@ class Layouts
 
         $fieldType->setOptions(['streams::addon.theme' => $options]);
 
-        $events->dispatch(new SetLayoutOptions($fieldType));
+        event(new SetLayoutOptions($fieldType));
     }
 
 }
