@@ -11,7 +11,8 @@
                             type="radio"
                             value="{{ value }}"
                             name="{{ field_type.input_name }}"
-                            {{ value == field_type.key ? 'checked' }}>
+                            {{ value == field_type.key ? 'checked' }}
+                            {{ field_type.disabled ? "disabled" }}>
 
                     <span class="{#custom-control-indicator#}"></span>
 
@@ -24,7 +25,8 @@
                         type="radio"
                         value="{{ value }}"
                         name="{{ field_type.input_name }}"
-                        {{ value == field_type.key ? 'checked' }}>
+                        {{ value == field_type.key ? 'checked' }}
+                        {{ field_type.disabled ? "disabled" }}>
 
                 <span class="{#custom-control-indicator#}"></span>
 
