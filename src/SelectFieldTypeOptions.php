@@ -1,29 +1,32 @@
 <?php namespace Anomaly\SelectFieldType;
 
 use Anomaly\SelectFieldType\Command\ParseOptions;
-use Illuminate\Contracts\Container\Container;
-use Illuminate\Foundation\Bus\DispatchesJobs;
 
+/**
+ * Class SelectFieldTypeOptions
+ *
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
+ */
 class SelectFieldTypeOptions
 {
-
-    use DispatchesJobs;
 
     /**
      * Handle the select options.
      *
      * @param  SelectFieldType $fieldType
      */
-    public function handle(SelectFieldType $fieldType, Container $container)
+    public function handle(SelectFieldType $fieldType)
     {
         $options = array_get($fieldType->getConfig(), 'options', []);
 
         if (is_string($options)) {
-            $options = $this->dispatch(new ParseOptions($fieldType, $options));
+            $options = dispatch_now(new ParseOptions($fieldType, $options));
         }
 
         if ($options instanceof \Closure) {
-            $options = $container->call($options, compact('fieldType'));
+            $options = app()->call($options, compact('fieldType'));
         }
 
         if (is_null($options)) {
