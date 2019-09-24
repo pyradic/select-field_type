@@ -2,7 +2,6 @@
 
 use Anomaly\SelectFieldType\SelectFieldType;
 
-
 /**
  * Class ParseOptions
  *
@@ -58,7 +57,6 @@ class ParseOptions
 
             // Find option [groups]
             if (starts_with($option, '[')) {
-
                 $group = trans(substr(trim($option), 1, -1));
 
                 $options[$group] = [];

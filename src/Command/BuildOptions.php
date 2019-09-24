@@ -3,7 +3,6 @@
 use Anomaly\SelectFieldType\SelectFieldType;
 use Illuminate\Container\Container;
 
-
 /**
  * Class BuildOptions
  *
@@ -26,7 +25,7 @@ class BuildOptions
      *
      * @param SelectFieldType $fieldType
      */
-    function __construct(SelectFieldType $fieldType)
+    public function __construct(SelectFieldType $fieldType)
     {
         $this->fieldType = $fieldType;
     }

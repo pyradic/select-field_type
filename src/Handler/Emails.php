@@ -3,7 +3,6 @@
 use Anomaly\SelectFieldType\SelectFieldType;
 use Anomaly\Streams\Platform\Addon\Theme\ThemeCollection;
 use Anomaly\Streams\Platform\Support\Str;
-use Illuminate\Contracts\Config\Repository;
 use Illuminate\Filesystem\Filesystem;
 
 /**
@@ -21,18 +20,17 @@ class Emails
      *
      * @param SelectFieldType $fieldType
      * @param ThemeCollection $themes
-     * @param Repository      $config
-     * @param Filesystem      $files
-     * @param Str             $str
+     * @param Filesystem $files
+     * @param Str $str
+     * @return array
      */
     public function handle(
         SelectFieldType $fieldType,
         ThemeCollection $themes,
-        Repository $config,
         Filesystem $files,
         Str $str
     ) {
-        $theme = $themes->get($config->get('streams::themes.standard'));
+        $theme = $themes->get(config('streams::themes.standard'));
 
         if (!$files->isDirectory($directory = $theme->getPath('resources/views/layouts/emails'))) {
             return [];
@@ -45,7 +43,6 @@ class Emails
         $options = array_combine(
             array_map(
                 function ($path) use ($prefix) {
-
                     $path = str_replace($prefix, '', $path);
                     $path = trim($path, '/\\');
                     $path = str_replace(basename($path), basename(pathinfo($path, PATHINFO_FILENAME), '.blade'), $path);
@@ -57,7 +54,6 @@ class Emails
             ),
             array_map(
                 function ($path) use ($directory, $str) {
-
                     $path = str_replace($directory, '', $path);
                     $path = trim($path, DIRECTORY_SEPARATOR);
                     $path = str_replace(basename($path), basename(pathinfo($path, PATHINFO_FILENAME), '.blade'), $path);

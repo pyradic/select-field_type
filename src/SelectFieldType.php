@@ -11,7 +11,6 @@ use Anomaly\SelectFieldType\Handler\States;
 use Anomaly\SelectFieldType\Handler\Timezones;
 use Anomaly\SelectFieldType\Handler\Years;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
-use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
  * Class SelectFieldType
@@ -23,7 +22,6 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 class SelectFieldType extends FieldType
 {
 
-    use DispatchesJobs;
 
     /**
      * No default class.
@@ -89,7 +87,7 @@ class SelectFieldType extends FieldType
     public function getOptions()
     {
         if ($this->options === null) {
-            $this->dispatch(new BuildOptions($this));
+            dispatch_now(new BuildOptions($this));
         }
 
         $topOptions = array_get($this->getConfig(), 'top_options');
@@ -194,7 +192,6 @@ class SelectFieldType extends FieldType
     protected function implodeOptions(array &$config)
     {
         if (isset($config['options']) && is_array($config['options'])) {
-
             array_walk(
                 $config['options'],
                 function (&$value, $key) {
@@ -205,5 +202,4 @@ class SelectFieldType extends FieldType
             $config['options'] = implode("\n", $config['options']);
         }
     }
-
 }

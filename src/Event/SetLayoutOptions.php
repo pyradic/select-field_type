@@ -38,5 +38,4 @@ class SetLayoutOptions
     {
         return $this->fieldType;
     }
-
 }
