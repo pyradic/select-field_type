@@ -1,4 +1,6 @@
-<?php namespace Anomaly\SelectFieldType\Handler;
+<?php
+
+namespace Anomaly\SelectFieldType\Handler;
 
 use Anomaly\SelectFieldType\Command\ParseOptions;
 use Anomaly\SelectFieldType\SelectFieldType;
@@ -30,6 +32,6 @@ class Options
             $options = app()->call($options, compact('fieldType'));
         }
 
-        $fieldType->setOptions((array)$options);
+        $fieldType->setOptions((array) $options);
     }
 }
