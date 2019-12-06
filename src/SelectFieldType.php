@@ -1,4 +1,6 @@
-<?php namespace Anomaly\SelectFieldType;
+<?php
+
+namespace Anomaly\SelectFieldType;
 
 use Anomaly\SelectFieldType\Command\BuildOptions;
 use Anomaly\SelectFieldType\Handler\Countries;
@@ -201,5 +203,24 @@ class SelectFieldType extends FieldType
 
             $config['options'] = implode("\n", $config['options']);
         }
+    }
+
+    /**
+     * Get the attributes.
+     *
+     * @param array $attributes
+     * @return array
+     */
+    public function attributes(array $attributes = [])
+    {
+        return array_filter(
+            array_merge(
+                parent::attributes(),
+                [
+                    'data-placeholder' => $this->getPlaceholder(),
+                ],
+                $attributes
+            )
+        );
     }
 }

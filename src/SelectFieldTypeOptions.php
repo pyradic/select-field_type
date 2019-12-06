@@ -1,4 +1,6 @@
-<?php namespace Anomaly\SelectFieldType;
+<?php
+
+namespace Anomaly\SelectFieldType;
 
 use Anomaly\SelectFieldType\Command\ParseOptions;
 
@@ -33,6 +35,6 @@ class SelectFieldTypeOptions
             $options = [];
         }
 
-        $fieldType->setOptions($options);
+        $fieldType->setOptions(translate($options));
     }
 }
