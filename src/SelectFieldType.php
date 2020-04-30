@@ -142,20 +142,6 @@ class SelectFieldType extends FieldType
     }
 
     /**
-     * Get the placeholder.
-     *
-     * @return null|string
-     */
-    public function getPlaceholder()
-    {
-        if (!$this->placeholder) {
-            return 'anomaly.field_type.select::input.placeholder';
-        }
-
-        return $this->placeholder;
-    }
-
-    /**
      * Return the input view.
      *
      * @return string
@@ -217,7 +203,7 @@ class SelectFieldType extends FieldType
             array_merge(
                 parent::attributes(),
                 [
-                    'data-placeholder' => $this->getPlaceholder(),
+                    'data-placeholder' => $this->placeholder,
                 ],
                 $attributes
             )

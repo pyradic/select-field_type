@@ -5,7 +5,7 @@
 <select-field-type {!! html_attributes([
     'value' => $fieldType->getValue(),
     'name' => $fieldType->getInputName(),
-    'placeholder' => $fieldType->getPlaceholder(),
+    'placeholder' => $fieldType->placeholder,
     'options' => json_encode($fieldType->getOptions()),
     // 'slugify' => $fieldType->config('slugify'),
     // 'lowercase' => $fieldType->config('lowercase'),
