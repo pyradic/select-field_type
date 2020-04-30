@@ -1,4 +1,4 @@
-<select {!! html_attributes($fieldType->attributes()) !!}>
+<select {!! html_attributes($fieldType->getAttributes()) !!}>
 
     <option value="">{{ $fieldType->placeholder }}</option>
 

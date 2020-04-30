@@ -24,7 +24,6 @@ use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
 class SelectFieldType extends FieldType
 {
 
-
     /**
      * No default class.
      *

@@ -3,8 +3,8 @@
 @endphp
 
 <select-field-type {!! html_attributes([
-    'value' => $fieldType->getValue(),
-    'name' => $fieldType->getInputName(),
+    'value' => $fieldType->value,
+    'name' => $fieldType->input_name,
     'placeholder' => $fieldType->placeholder,
     'options' => json_encode($fieldType->getOptions()),
     // 'slugify' => $fieldType->config('slugify'),
