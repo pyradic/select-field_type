@@ -51,7 +51,7 @@ class SelectFieldType extends FieldType
      *
      * @var array
      */
-    protected $config = [
+    public $config = [
         'selector' => ':',
         'handler'  => 'options',
         'mode'     => 'dropdown',
