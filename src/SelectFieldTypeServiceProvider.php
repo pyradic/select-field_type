@@ -19,7 +19,7 @@ class SelectFieldTypeServiceProvider extends AddonServiceProvider implements Def
      *
      * @var array
      */
-    public $aliases = [
+    public $bindings = [
         'select' => 'anomaly.field_type.select',
     ];
 
