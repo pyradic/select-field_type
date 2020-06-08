@@ -2,8 +2,8 @@
 
 namespace Anomaly\SelectFieldType;
 
-use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
 use Illuminate\Contracts\Support\DeferrableProvider;
+use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
 
 /**
  * Class SelectFieldTypeServiceProvider
@@ -15,10 +15,19 @@ class SelectFieldTypeServiceProvider extends AddonServiceProvider implements Def
 {
 
     /**
+     * The addon aliases.
+     *
+     * @var array
+     */
+    public $aliases = [
+        'select' => 'anomaly.field_type.select',
+    ];
+
+    /**
      * Return the provided services.
      */
     public function provides()
     {
-        return [SelectFieldType::class, 'anomaly.field_type.select'];
+        return [SelectFieldType::class, 'anomaly.field_type.select', 'select'];
     }
 }
