@@ -1,5 +1,6 @@
 <?php namespace Anomaly\SelectFieldType;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldTypePresenter;
 
@@ -32,7 +33,7 @@ class SelectFieldTypePresenter extends FieldTypePresenter
             return null;
         }
 
-        return array_get($currency, 'symbol');
+        return Arr::get($currency, 'symbol');
     }
 
     /**
@@ -82,7 +83,7 @@ class SelectFieldTypePresenter extends FieldTypePresenter
             return null;
         }
 
-        if (!Str::contains($value = array_get($options, $key), '::')) {
+        if (!Str::contains($value = Arr::get($options, $key), '::')) {
             return $value;
         }
 

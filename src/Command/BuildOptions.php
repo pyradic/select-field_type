@@ -1,5 +1,6 @@
 <?php namespace Anomaly\SelectFieldType\Command;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Container\Container;
 use Anomaly\SelectFieldType\SelectFieldType;
@@ -38,10 +39,10 @@ class BuildOptions
      */
     public function handle(Container $container)
     {
-        $handler = array_get($this->fieldType->getConfig(), 'handler');
+        $handler = Arr::get($this->fieldType->getConfig(), 'handler');
 
         if (!class_exists($handler) && !Str::contains($handler, '@')) {
-            $handler = array_get($this->fieldType->getHandlers(), $handler);
+            $handler = Arr::get($this->fieldType->getHandlers(), $handler);
         }
 
         if (is_string($handler) && !Str::contains($handler, '@')) {

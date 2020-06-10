@@ -2,6 +2,7 @@
 
 namespace Anomaly\SelectFieldType;
 
+use Illuminate\Support\Arr;
 use Anomaly\SelectFieldType\Command\ParseOptions;
 
 /**
@@ -21,7 +22,7 @@ class SelectFieldTypeOptions
      */
     public function handle(SelectFieldType $fieldType)
     {
-        $options = array_get($fieldType->getConfig(), 'options', []);
+        $options = Arr::get($fieldType->getConfig(), 'options', []);
 
         if (is_string($options)) {
             $options = dispatch_now(new ParseOptions($fieldType, $options));
