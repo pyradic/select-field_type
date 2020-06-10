@@ -1,7 +1,8 @@
 <?php namespace Anomaly\SelectFieldType\Command;
 
-use Anomaly\SelectFieldType\SelectFieldType;
+use Illuminate\Support\Str;
 use Illuminate\Container\Container;
+use Anomaly\SelectFieldType\SelectFieldType;
 
 /**
  * Class BuildOptions
@@ -39,11 +40,11 @@ class BuildOptions
     {
         $handler = array_get($this->fieldType->getConfig(), 'handler');
 
-        if (!class_exists($handler) && !str_contains($handler, '@')) {
+        if (!class_exists($handler) && !Str::contains($handler, '@')) {
             $handler = array_get($this->fieldType->getHandlers(), $handler);
         }
 
-        if (is_string($handler) && !str_contains($handler, '@')) {
+        if (is_string($handler) && !Str::contains($handler, '@')) {
             $handler .= '@handle';
         }
 
