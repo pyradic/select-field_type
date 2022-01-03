@@ -52,7 +52,7 @@ class Layouts
 
             $fieldType->setOptions([]);
 
-            event(new SetLayoutOptions($fieldType));
+            app('events')->fire(new SetLayoutOptions($fieldType));
 
             return;
         }
@@ -90,7 +90,7 @@ class Layouts
 
         $fieldType->setOptions(['streams::addon.theme' => $options]);
 
-        event(new SetLayoutOptions($fieldType));
+        app('events')->fire(new SetLayoutOptions($fieldType));
     }
 
 }
