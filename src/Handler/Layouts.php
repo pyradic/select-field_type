@@ -52,7 +52,13 @@ class Layouts
 
             $fieldType->setOptions([]);
 
-            app('events')->fire(new SetLayoutOptions($fieldType));
+            $events = app('events');
+
+            if (method_exists($events, 'dispatch')) {
+                $events->dispatch(new SetLayoutOptions($fieldType));
+            } else {
+                $events->fire(new SetLayoutOptions($fieldType));
+            }
 
             return;
         }
