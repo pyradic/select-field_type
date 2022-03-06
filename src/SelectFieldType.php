@@ -1,6 +1,7 @@
 <?php namespace Anomaly\SelectFieldType;
 
 use Anomaly\SelectFieldType\Command\BuildOptions;
+use Anomaly\SelectFieldType\Handler\Choices;
 use Anomaly\SelectFieldType\Handler\Countries;
 use Anomaly\SelectFieldType\Handler\Currencies;
 use Anomaly\SelectFieldType\Handler\Emails;
@@ -72,6 +73,7 @@ class SelectFieldType extends FieldType
         'countries'  => Countries::class,
         'timezones'  => Timezones::class,
         'currencies' => Currencies::class,
+        'choices' => Choices::class
     ];
 
     /**
@@ -80,6 +82,11 @@ class SelectFieldType extends FieldType
      * @var null|array
      */
     protected $options = null;
+
+    public function render($payload = [])
+    {
+        return parent::render($payload);
+    }
 
     /**
      * Get the dropdown options.

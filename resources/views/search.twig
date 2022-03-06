@@ -1,16 +1,14 @@
 {{ asset_add("styles.css", "anomaly.field_type.select::css/choices.css", ["as:jshjohnson/Choices.css"]) }}
-{{ asset_add("scripts.js", "anomaly.field_type.select::js/choices.js", ["as:jshjohnson/Choices.js"]) }}
+{#{{ asset_add("scripts.js", "anomaly.field_type.select::js/choices.js", ["as:jshjohnson/Choices.js"]) }}#}
 
 {{ asset_add("styles.css", "anomaly.field_type.select::css/search.css") }}
 {{ asset_add("scripts.js", "anomaly.field_type.select::js/search.js") }}
-
 <select
         data-search
         name="{{ field_type.input_name }}"
         {{ html_attributes(field_type.attributes) }}
         {{ field_type.disabled ? 'disabled' }}
         {{ field_type.readonly ? 'readonly' }}>
-
     {% if field_type.placeholder %}
         <option value="">{{ trans(field_type.placeholder) }}</option>
     {% endif %}
@@ -28,3 +26,6 @@
     {% endfor %}
 
 </select>
+
+{#{{ asset_add("search.js", "anomaly.field_type.select::js/search.js") }}#}
+{#{{ asset_script('search.js') }}#}
